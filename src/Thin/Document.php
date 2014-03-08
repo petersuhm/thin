@@ -26,6 +26,9 @@ class Document implements DocumentInterface {
 
     public function getHtmlContent(ParserInterface $parser = null)
     {
+        if ($parser === null)
+            return $this->parser->parse($this->content);
+
         return $parser->parse($this->content);
     }
 }

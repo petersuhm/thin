@@ -40,4 +40,13 @@ class DocumentSpec extends ObjectBehavior
         $this->content = '# Markdown';
         $this->getHtmlContent($parser);
     }
+
+    function it_gets_htmlContent_with_no_parser(\Thin\Parsers\MarkdownParser $parser)
+    {
+        $parser->parse('# Markdown')->shouldBeCalled()->willReturn('<h1>Markdown</h1>');
+
+        $this->beConstructedWith($parser);
+        $this->content = '# Markdown';
+        $this->getHtmlContent();
+    }
 }
