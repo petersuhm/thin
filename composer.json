@@ -1,4 +1,7 @@
 {
+    "require": {
+        "michelf/php-markdown": "1.4.*@dev"
+    },
     "require-dev": {
         "phpspec/phpspec": "2.0.*@dev"
     },
