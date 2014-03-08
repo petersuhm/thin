@@ -11,4 +11,9 @@ class DocumentCollection
 
         array_push($this->documents, $var);
     }
+
+    public function all()
+    {
+        return $this->documents;
+    }
 }

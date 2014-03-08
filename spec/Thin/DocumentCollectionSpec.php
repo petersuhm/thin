@@ -24,4 +24,11 @@ class DocumentCollectionSpec extends ObjectBehavior
 
         $this->documents->shouldHaveCount(2);
     }
+
+    function it_return_all_documents(Document $document1, Document $document2)
+    {
+        $this->add(array($document1, $document2));
+
+        $this->all()->shouldHaveCount(2);
+    }
 }
