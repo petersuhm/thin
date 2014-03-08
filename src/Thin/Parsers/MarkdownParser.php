@@ -5,7 +5,7 @@ use Michelf\Markdown;
 
 class MarkdownParser implements ParserInterface {
 
-    public function __construct(\Michelf\Markdown $markdown = null)
+    public function __construct(Markdown $markdown = null)
     {
         $this->markdown = ($markdown === null) ? new Markdown : $markdown;
     }
