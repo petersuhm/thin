@@ -2,6 +2,7 @@
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Thin\Document;
 
 class DocumentCollectionSpec extends ObjectBehavior
 {
@@ -10,14 +11,14 @@ class DocumentCollectionSpec extends ObjectBehavior
         $this->shouldHaveType('Thin\DocumentCollection');
     }
 
-    function it_adds_document(\Thin\Document $document)
+    function it_adds_document(Document $document)
     {
         $this->add($document);
 
         $this->documents->shouldHaveCount(1);
     }
 
-    function it_adds_documents_from_array(\Thin\Document $document1, \Thin\Document $document2)
+    function it_adds_documents_from_array(Document $document1, Document $document2)
     {
         $this->add(array($document1, $document2));
 
