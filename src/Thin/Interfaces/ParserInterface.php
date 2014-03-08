@@ -1,3 +1,6 @@
 <?php namespace Thin\Interfaces;
 
-interface ParserInterface {}
+interface ParserInterface {
+
+    public function parse($source);
+}
