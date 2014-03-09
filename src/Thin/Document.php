@@ -31,4 +31,9 @@ class Document implements DocumentInterface {
 
         return $parser->parse($this->content);
     }
+
+    public function __call($key, $arguments)
+    {
+        return $this->getMetadata($key);
+    }
 }

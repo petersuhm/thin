@@ -35,6 +35,9 @@ foreach ($posts as $post)
     $post->getContent();
     $post->getHtmlContent();
 
+    // Metadata can be accessed dynamically as well:
+    $post->title();
+
     // Optionally give an instance of ParserInterface as a parameter
     $post->getHtmlContent(new \Thin\Parsers\MarkdownExtraParser);
 

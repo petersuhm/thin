@@ -49,4 +49,11 @@ class DocumentSpec extends ObjectBehavior
         $this->content = '# Markdown';
         $this->getHtmlContent();
     }
+
+    function it_gets_metadata_dynamically()
+    {
+        $this->metadata = array('title' => 'The title');
+
+        $this->title()->shouldReturn('The title');
+    }
 }
