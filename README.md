@@ -1,5 +1,8 @@
 # Thin - Flat file content management
 
+Thin is a package for flat file content management. By default, it supports
+files in Markdown and Markdown Extra format.
+
 ## Installation
 
 Install Thin from [Packagist](https://packagist.org/packages/petersuhm/thin):
