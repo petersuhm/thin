@@ -31,4 +31,54 @@ class DocumentCollectionSpec extends ObjectBehavior
 
         $this->all()->shouldHaveCount(2);
     }
+
+    function it_is_iteratable()
+    {
+        $this->shouldImplement('Iterator');
+    }
+
+    function it_returns_current_element(Document $document)
+    {
+        $this->add($document);
+
+        $this->current()->shouldReturn($document);
+    }
+
+    function it_returns_key_of_current_element(Document $document)
+    {
+        $this->add($document);
+
+        $this->key()->shouldReturn(0);
+    }
+
+    function it_moves_forward_to_next_element(Document $document1, Document $document2)
+    {
+        $this->add(array($document1, $document2));
+
+        $this->next();
+
+        $this->current()->shouldReturn($document2);
+    }
+
+    function it_rewinds_to_first_element(Document $document1, Document $document2)
+    {
+        $this->add(array($document1, $document2));
+
+        $this->next();
+        $this->rewind();
+
+        $this->current()->shouldReturn($document1);
+    }
+
+    function it_can_be_valid(Document $document)
+    {
+        $this->add($document);
+
+        $this->valid()->shouldReturn(true);
+    }
+
+    function it_can_be_invalid()
+    {
+        $this->valid()->shouldReturn(false);
+    }
 }
