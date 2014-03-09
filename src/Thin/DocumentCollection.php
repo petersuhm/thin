@@ -10,7 +10,7 @@ class DocumentCollection implements \Iterator
         if (is_array($var))
             return array_map([$this, 'add'], $var);
 
-        array_push($this->documents, $var);
+        array_unshift($this->documents, $var);
     }
 
     public function all()

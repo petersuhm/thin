@@ -25,6 +25,13 @@ class DocumentCollectionSpec extends ObjectBehavior
         $this->documents->shouldHaveCount(2);
     }
 
+    function it_add_documents_in_descending_order(Document $document1, Document $document2)
+    {
+        $this->add(array($document1, $document2));
+
+        $this->all()[0]->shouldEqual($document2);
+    }
+
     function it_return_all_documents(Document $document1, Document $document2)
     {
         $this->add(array($document1, $document2));
@@ -57,7 +64,7 @@ class DocumentCollectionSpec extends ObjectBehavior
 
         $this->next();
 
-        $this->current()->shouldReturn($document2);
+        $this->current()->shouldReturn($document1);
     }
 
     function it_rewinds_to_first_element(Document $document1, Document $document2)
@@ -67,7 +74,7 @@ class DocumentCollectionSpec extends ObjectBehavior
         $this->next();
         $this->rewind();
 
-        $this->current()->shouldReturn($document1);
+        $this->current()->shouldReturn($document2);
     }
 
     function it_can_be_valid(Document $document)

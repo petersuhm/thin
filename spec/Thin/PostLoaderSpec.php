@@ -36,14 +36,14 @@ class PostLoaderSpec extends ObjectBehavior
         $documents = $this->all();
 
         $documents->shouldHaveType('Thin\DocumentCollection');
-        $documents->all()[0]->getMetadata('title')->shouldEqual($metadata1['title']);
-        $documents->all()[0]->getMetadata('date')->shouldEqual($metadata1['date']);
-        $documents->all()[0]->getContent()->shouldEqual('# First post');
-        $documents->all()[0]->getSlug()->shouldEqual('first-post');
-        $documents->all()[1]->getMetadata('title')->shouldEqual($metadata2['title']);
-        $documents->all()[1]->getMetadata('date')->shouldEqual($metadata2['date']);
-        $documents->all()[1]->getContent()->shouldEqual('# Second post');
-        $documents->all()[1]->getSlug()->shouldEqual('second-post');
+        $documents->all()[1]->getMetadata('title')->shouldEqual($metadata1['title']);
+        $documents->all()[1]->getMetadata('date')->shouldEqual($metadata1['date']);
+        $documents->all()[1]->getContent()->shouldEqual('# First post');
+        $documents->all()[1]->getSlug()->shouldEqual('first-post');
+        $documents->all()[0]->getMetadata('title')->shouldEqual($metadata2['title']);
+        $documents->all()[0]->getMetadata('date')->shouldEqual($metadata2['date']);
+        $documents->all()[0]->getContent()->shouldEqual('# Second post');
+        $documents->all()[0]->getSlug()->shouldEqual('second-post');
     }
 
     function it_finds_post_from_slug()
