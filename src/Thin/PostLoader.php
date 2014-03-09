@@ -44,7 +44,7 @@ class PostLoader implements DocumentLoaderInterface {
         $post = new Post;
         $post->metadata = json_decode($content[0], true);
         $post->content = $content[1];
-        $post->slug = basename($file, '.md');
+        $post->slug = basename($file, $this->settings['document_ext']);
 
         return $post;
     }
