@@ -1,4 +1,13 @@
 {
+    "name": "petersuhm/thin",
+    "description": "Flat file content management package for PHP.",
+    "authors": [
+        {
+            "name": "Peter Suhm",
+            "email": "peter@suhm.dk"
+        }
+    ],
+    "license": "MIT",
     "require": {
         "michelf/php-markdown": "1.4.*@dev"
     },
@@ -12,6 +21,5 @@
     },
     "config": {
         "bin-dir": "bin"
-    },
-    "minimum-stability": "dev"
+    }
 }
