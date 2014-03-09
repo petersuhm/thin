@@ -51,7 +51,7 @@ The PostLoader expects files to follow the following convention:
 
 ```
 {
-    "some-metadata": "In JSON format",
+    "some_metadata": "In JSON format",
     "...": "..."
 }
 
