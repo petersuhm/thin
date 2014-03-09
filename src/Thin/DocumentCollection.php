@@ -18,6 +18,11 @@ class DocumentCollection implements \Iterator
         return $this->documents;
     }
 
+    public function limit($limit)
+    {
+        return array_slice($this->documents, 0, $limit);
+    }
+
     public function current()
     {
         return $this->documents[$this->position];

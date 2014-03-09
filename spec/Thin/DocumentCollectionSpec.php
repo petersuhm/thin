@@ -88,4 +88,14 @@ class DocumentCollectionSpec extends ObjectBehavior
     {
         $this->valid()->shouldReturn(false);
     }
+
+    function it_limit_documents(Document $document1, Document $document2)
+    {
+        $this->add(array($document1, $document2));
+
+        $documents = $this->limit(1);
+
+        $documents->shouldHaveCount(1);
+        $documents[0]->shouldEqual($document2);
+    }
 }
