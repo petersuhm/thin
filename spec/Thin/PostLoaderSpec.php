@@ -20,7 +20,8 @@ class PostLoaderSpec extends ObjectBehavior
 
         $this->config($settings);
 
-        $this->settings->shouldEqual($settings);
+        $this->setting('document_path')->shouldEqual($settings['document_path']);
+        $this->setting('document_ext')->shouldEqual($settings['document_ext']);
     }
 
     function it_return_markdown_files_as_documents()

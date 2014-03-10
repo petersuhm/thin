@@ -6,7 +6,7 @@ use Thin\Post;
 
 class PostLoader implements DocumentLoaderInterface {
 
-    public $settings = array();
+    protected $settings = array();
 
     public function config($settings)
     {
@@ -47,5 +47,10 @@ class PostLoader implements DocumentLoaderInterface {
         $post->setSlug(basename($file, $this->settings['document_ext']));
 
         return $post;
+    }
+
+    public function setting($key)
+    {
+        return $this->settings[$key];
     }
 }
