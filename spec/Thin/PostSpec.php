@@ -11,9 +11,9 @@ class PostSpec extends ObjectBehavior
         $this->shouldHaveType('Thin\Document');
     }
 
-    function it_has_a_slug()
+    function it_sets_and_gets_slug()
     {
-        $this->slug = 'some-slug';
+        $this->setSlug('some-slug');
         $this->getSlug()->shouldReturn('some-slug');
     }
 }
