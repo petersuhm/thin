@@ -77,4 +77,25 @@ class DocumentCollection implements \Iterator, \Countable, \ArrayAccess
     {
         unset($this->documents[$offset]);
     }
+
+    public function orderBy($key, $order)
+    {
+        if ($order == 'desc')
+            @usort($this->documents, array($this, 'compareDescending', $key));
+
+        else if ($order == 'asc')
+            @usort($this->documents, array($this, 'compareAscending', $key));
+
+        return $this;
+    }
+
+    protected function compareDescending($a, $b, $key)
+    {
+        return strcasecmp($b->getMetadata($key), $a->getMetadata($key));
+    }
+
+    protected function compareAscending($a, $b, $key)
+    {
+        return strcasecmp($a->getMetadata($key), $b->getMetadata($key));
+    }
 }

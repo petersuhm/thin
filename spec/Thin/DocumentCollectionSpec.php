@@ -153,4 +153,45 @@ class DocumentCollectionSpec extends ObjectBehavior
         $this->offsetUnset(0);
         $this->offsetGet(0)->shouldReturn(null);
     }
+
+    function it_order_documents_by_metadata_descending(Document $document1, Document $document2, Document $document3)
+    {
+        $document1->getMetadata('date')->willReturn('2010-01-01');
+        $document2->getMetadata('date')->willReturn('2011-01-01');
+        $document3->getMetadata('date')->willReturn('2012-01-01');
+
+        $this->add(array($document1, $document2, $document3));
+
+        $this->orderBy('date', 'desc')[0]->shouldEqual($document3);
+        $this->orderBy('date', 'desc')[1]->shouldEqual($document2);
+        $this->orderBy('date', 'desc')[2]->shouldEqual($document1);
+    }
+
+    function it_order_documents_by_metadata_ascending(Document $document1, Document $document2, Document $document3)
+    {
+        $document1->getMetadata('date')->willReturn('2012-01-01');
+        $document2->getMetadata('date')->willReturn('2011-01-01');
+        $document3->getMetadata('date')->willReturn('2010-01-01');
+
+        $this->add(array($document1, $document2, $document3));
+
+        $this->orderBy('date', 'asc')[0]->shouldEqual($document3);
+        $this->orderBy('date', 'asc')[1]->shouldEqual($document2);
+        $this->orderBy('date', 'asc')[2]->shouldEqual($document1);
+    }
+
+    function it_can_chain_methods(Document $document1, Document $document2, Document $document3)
+    {
+        $document1->getMetadata('date')->willReturn('2012-01-01');
+        $document2->getMetadata('date')->willReturn('2011-01-01');
+        $document3->getMetadata('date')->willReturn('2010-01-01');
+
+        $this->add(array($document1, $document2, $document3));
+
+        $documents = $this->orderBy('date', 'asc')->limit(2);
+
+        $documents->shouldHaveCount(2);
+        $documents[0]->shouldEqual($document3);
+        $documents[1]->shouldEqual($document2);
+    }
 }

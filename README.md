@@ -32,6 +32,10 @@ $posts = $postLoader->all();
 // You can limit the number of documents
 $posts->limit(5);
 
+// You can also order documents by metadata
+$posts->orderBy('date', 'desc')
+$posts->orderBy('date', 'desc')->limit(3);
+
 foreach ($posts as $post)
 {
     $post->getMetadata('title');
