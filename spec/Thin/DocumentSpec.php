@@ -26,9 +26,9 @@ class DocumentSpec extends ObjectBehavior
         $this->getMetadata('title')->shouldReturn('The title');
     }
 
-    function it_gets_content()
+    function it_sets_and_gets_content()
     {
-        $this->content = '# Markdown';
+        $this->setContent('# Markdown');
 
         $this->getContent()->shouldReturn('# Markdown');
     }
@@ -37,7 +37,7 @@ class DocumentSpec extends ObjectBehavior
     {
         $parser->parse('# Markdown')->shouldBeCalled()->willReturn('<h1>Markdown</h1>');
 
-        $this->content = '# Markdown';
+        $this->setContent('# Markdown');
         $this->getHtmlContent($parser);
     }
 
@@ -46,7 +46,7 @@ class DocumentSpec extends ObjectBehavior
         $parser->parse('# Markdown')->shouldBeCalled()->willReturn('<h1>Markdown</h1>');
 
         $this->beConstructedWith($parser);
-        $this->content = '# Markdown';
+        $this->setContent('# Markdown');
         $this->getHtmlContent();
     }
 

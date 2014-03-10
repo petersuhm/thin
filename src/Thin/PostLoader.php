@@ -26,7 +26,7 @@ class PostLoader implements DocumentLoaderInterface {
 
             $post = new Post;
             $post->setMetadata(json_decode($content[0], true));
-            $post->content = $content[1];
+            $post->setContent($content[1]);
             $post->slug = basename($file, $this->settings['document_ext']);
 
             $documentCollection->add($post);
@@ -43,7 +43,7 @@ class PostLoader implements DocumentLoaderInterface {
 
         $post = new Post;
         $post->setMetadata(json_decode($content[0], true));
-        $post->content = $content[1];
+        $post->setContent($content[1]);
         $post->slug = basename($file, $this->settings['document_ext']);
 
         return $post;

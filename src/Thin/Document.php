@@ -7,8 +7,8 @@ use Thin\Parsers\MarkdownParser;
 class Document implements DocumentInterface {
 
     protected $metadata;
-    public $content;
-    public $parser;
+    protected $content;
+    protected $parser;
 
     public function __construct(ParserInterface $parser = null)
     {
@@ -30,6 +30,11 @@ class Document implements DocumentInterface {
         return $this->content;
     }
 
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
     public function getHtmlContent(ParserInterface $parser = null)
     {
         if ($parser === null)
@@ -41,5 +46,13 @@ class Document implements DocumentInterface {
     public function __call($key, $arguments)
     {
         return $this->getMetadata($key);
+    }
+
+    public function __get($name)
+    {
+        if (property_exists($this, $name))
+        {
+            return $this->$name;
+        }
     }
 }
