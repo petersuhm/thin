@@ -15,14 +15,14 @@ class DocumentCollectionSpec extends ObjectBehavior
     {
         $this->add($document);
 
-        $this->documents->shouldHaveCount(1);
+        $this->all()->shouldHaveCount(1);
     }
 
     function it_adds_documents_from_array(Document $document1, Document $document2)
     {
         $this->add(array($document1, $document2));
 
-        $this->documents->shouldHaveCount(2);
+        $this->all()->shouldHaveCount(2);
     }
 
     function it_add_documents_in_descending_order(Document $document1, Document $document2)

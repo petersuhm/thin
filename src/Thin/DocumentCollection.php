@@ -2,7 +2,7 @@
 
 class DocumentCollection implements \Iterator
 {
-    public $documents = array();
+    protected $documents = array();
     protected $position = 0;
 
     public function add($var)
