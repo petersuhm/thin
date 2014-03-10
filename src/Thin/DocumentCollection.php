@@ -15,12 +15,14 @@ class DocumentCollection implements \Iterator, \Countable, \ArrayAccess
 
     public function all()
     {
-        return $this->documents;
+        return $this;
     }
 
     public function limit($limit)
     {
-        return array_slice($this->documents, 0, $limit);
+        $this->documents = array_slice($this->documents, 0, $limit);
+
+        return $this;
     }
 
     public function current()
