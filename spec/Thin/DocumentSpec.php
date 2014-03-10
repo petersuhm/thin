@@ -61,6 +61,6 @@ class DocumentSpec extends ObjectBehavior
     {
         $this->setMetadata(array('title' => 'The title'));
 
-        $this->title()->shouldReturn('The title');
+        $this->title->shouldReturn('The title');
     }
 }

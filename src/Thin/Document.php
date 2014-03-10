@@ -48,16 +48,15 @@ class Document implements DocumentInterface {
         $this->parser = $parser;
     }
 
-    public function __call($key, $arguments)
-    {
-        return $this->getMetadata($key);
-    }
-
     public function __get($name)
     {
         if (property_exists($this, $name))
         {
             return $this->$name;
+        }
+        else
+        {
+            return $this->getMetadata($name);
         }
     }
 }

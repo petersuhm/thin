@@ -6,6 +6,6 @@ interface DocumentInterface {
     public function getContent();
     public function getHtmlContent(ParserInterface $parser = null);
 
-    // For dynamic accessing metadata
-    public function __call($key, $arguments);
+    // For dynamic accessing properties and metadata
+    public function __get($name);
 }
