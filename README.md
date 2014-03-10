@@ -30,7 +30,7 @@ $postLoader->config(array(
 $posts = $postLoader->all();
 
 // You can limit the number of documents
-$posts = $postLoader->limit(5);
+$posts->limit(5);
 
 foreach ($posts as $post)
 {
