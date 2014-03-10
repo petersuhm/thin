@@ -98,4 +98,16 @@ class DocumentCollectionSpec extends ObjectBehavior
         $documents->shouldHaveCount(1);
         $documents[0]->shouldEqual($document2);
     }
+
+    function it_should_be_countable()
+    {
+        $this->shouldImplement('Countable');
+    }
+
+    function it_should_count_documents(Document $document1)
+    {
+        $this->add($document1);
+
+        $this->count()->shouldReturn(1);
+    }
 }

@@ -1,6 +1,6 @@
 <?php namespace Thin;
 
-class DocumentCollection implements \Iterator
+class DocumentCollection implements \Iterator, \Countable
 {
     protected $documents = array();
     protected $position = 0;
@@ -46,5 +46,10 @@ class DocumentCollection implements \Iterator
     public function valid()
     {
         return isset($this->documents[$this->position]);
+    }
+
+    public function count()
+    {
+        return count($this->documents);
     }
 }
