@@ -110,4 +110,47 @@ class DocumentCollectionSpec extends ObjectBehavior
 
         $this->count()->shouldReturn(1);
     }
+
+    function it_should_be_accessible_like_an_array()
+    {
+        $this->shouldImplement('ArrayAccess');
+    }
+
+    function it_tells_if_offset_exists(Document $document1)
+    {
+        $this->add($document1);
+
+        $this->offsetExists(0)->shouldBe(true);
+        $this->offsetExists(1)->shouldBe(false);
+    }
+
+    function it_gets_by_offset(Document $document1)
+    {
+        $this->add($document1);
+
+        $this->offsetGet(0)->shouldReturn($document1);
+    }
+
+    function it_sets_by_offset()
+    {
+        $this->offsetSet(0, 'foo');
+
+        $this->offsetGet(0)->shouldReturn('foo');
+    }
+
+    function it_sets_by_offset_given_null()
+    {
+        $this->offsetSet(null, array('bar'));
+
+        $this->offsetGet(0)->shouldReturn('bar');
+    }
+
+    function it_unset_by_offset()
+    {
+        $this->offsetSet(0, 'foo');
+        $this->offsetGet(0)->shouldReturn('foo');
+
+        $this->offsetUnset(0);
+        $this->offsetGet(0)->shouldReturn(null);
+    }
 }

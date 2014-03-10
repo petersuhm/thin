@@ -1,6 +1,6 @@
 <?php namespace Thin;
 
-class DocumentCollection implements \Iterator, \Countable
+class DocumentCollection implements \Iterator, \Countable, \ArrayAccess
 {
     protected $documents = array();
     protected $position = 0;
@@ -51,5 +51,28 @@ class DocumentCollection implements \Iterator, \Countable
     public function count()
     {
         return count($this->documents);
+    }
+
+    public function offsetExists($offset)
+    {
+        return isset($this->documents[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return isset($this->documents[$offset]) ? $this->documents[$offset] : null;
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        if (is_null($offset))
+            $this->documents = $value;
+        else
+            $this->documents[$offset] = $value;
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->documents[$offset]);
     }
 }
