@@ -19,6 +19,13 @@ class DocumentSpec extends ObjectBehavior
         $this->parser->shouldHaveType('Thin\Parsers\MarkdownParser');
     }
 
+    function it_sets_parser(\Thin\Parsers\MarkdownExtraParser $parser)
+    {
+        $this->setParser($parser);
+
+        $this->parser->shouldHaveType('Thin\Parsers\MarkdownExtraParser');
+    }
+
     function it_sets_and_gets_metadata()
     {
         $this->setMetadata(array('title' => 'The title'));

@@ -43,6 +43,11 @@ class Document implements DocumentInterface {
         return $parser->parse($this->content);
     }
 
+    public function setParser(ParserInterface $parser)
+    {
+        $this->parser = $parser;
+    }
+
     public function __call($key, $arguments)
     {
         return $this->getMetadata($key);
