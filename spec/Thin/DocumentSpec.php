@@ -19,9 +19,9 @@ class DocumentSpec extends ObjectBehavior
         $this->parser->shouldHaveType('Thin\Parsers\MarkdownParser');
     }
 
-    function it_gets_metadata()
+    function it_sets_and_gets_metadata()
     {
-        $this->metadata = array('title' => 'The title');
+        $this->setMetadata(array('title' => 'The title'));
 
         $this->getMetadata('title')->shouldReturn('The title');
     }
@@ -52,7 +52,7 @@ class DocumentSpec extends ObjectBehavior
 
     function it_gets_metadata_dynamically()
     {
-        $this->metadata = array('title' => 'The title');
+        $this->setMetadata(array('title' => 'The title'));
 
         $this->title()->shouldReturn('The title');
     }

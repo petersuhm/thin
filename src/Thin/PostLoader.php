@@ -25,7 +25,7 @@ class PostLoader implements DocumentLoaderInterface {
             $content = explode("\n\n", $source, 2);
 
             $post = new Post;
-            $post->metadata = json_decode($content[0], true);
+            $post->setMetadata(json_decode($content[0], true));
             $post->content = $content[1];
             $post->slug = basename($file, $this->settings['document_ext']);
 
@@ -42,7 +42,7 @@ class PostLoader implements DocumentLoaderInterface {
         $content = explode("\n\n", $source, 2);
 
         $post = new Post;
-        $post->metadata = json_decode($content[0], true);
+        $post->setMetadata(json_decode($content[0], true));
         $post->content = $content[1];
         $post->slug = basename($file, $this->settings['document_ext']);
 

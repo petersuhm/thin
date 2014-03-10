@@ -6,8 +6,9 @@ use Thin\Parsers\MarkdownParser;
 
 class Document implements DocumentInterface {
 
-    public $metadata;
+    protected $metadata;
     public $content;
+    public $parser;
 
     public function __construct(ParserInterface $parser = null)
     {
@@ -17,6 +18,11 @@ class Document implements DocumentInterface {
     public function getMetadata($key)
     {
         return $this->metadata[$key];
+    }
+
+    public function setMetadata($metadata)
+    {
+        $this->metadata = $metadata;
     }
 
     public function getContent()
