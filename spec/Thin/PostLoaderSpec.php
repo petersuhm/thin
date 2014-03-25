@@ -2,6 +2,7 @@
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Petersuhm\Configure\ConfigurationRepository;
 
 class PostLoaderSpec extends ObjectBehavior
 {
@@ -11,17 +12,18 @@ class PostLoaderSpec extends ObjectBehavior
         $this->shouldImplement('Thin\Interfaces\DocumentLoaderInterface');
     }
 
-    function it_is_configurable()
+    function it_is_configurable(ConfigurationRepository $repo)
     {
+        $this->beConstructedWith($repo);
+
         $settings = array(
             'document_path' => 'spec/fixtures',
             'document_ext' => '.md'
         );
 
-        $this->config($settings);
+        $repo->set($settings)->shouldBeCalled();
 
-        $this->setting('document_path')->shouldEqual($settings['document_path']);
-        $this->setting('document_ext')->shouldEqual($settings['document_ext']);
+        $this->config($settings);
     }
 
     function it_return_markdown_files_as_documents()

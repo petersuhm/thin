@@ -3,21 +3,30 @@
 use Thin\Interfaces\DocumentLoaderInterface;
 use Thin\DocumentCollection;
 use Thin\Post;
+use Petersuhm\Configure\ConfigurationRepository;
 
 class PostLoader implements DocumentLoaderInterface {
 
-    protected $settings = array();
+    protected $settings;
+
+    public function __construct($settings = null)
+    {
+        if ($settings == null)
+            $this->settings = new ConfigurationRepository();
+        else
+            $this->settings = $settings;
+    }
 
     public function config($settings)
     {
-        $this->settings = array_merge($this->settings, $settings);
+        $this->settings->set($settings);
     }
 
     public function all()
     {
         $documentCollection = new DocumentCollection;
 
-        $files = glob($this->settings['document_path'] . '/*' . $this->settings['document_ext']);
+        $files = glob($this->settings->get('document_path') . '/*' . $this->settings->get('document_ext'));
 
         foreach ($files as $file)
         {
@@ -27,7 +36,7 @@ class PostLoader implements DocumentLoaderInterface {
             $post = new Post;
             $post->setMetadata(json_decode($content[0], true));
             $post->setContent($content[1]);
-            $post->setSlug(basename($file, $this->settings['document_ext']));
+            $post->setSlug(basename($file, $this->settings->get('document_ext')));
 
             $documentCollection->add($post);
         }
@@ -37,14 +46,14 @@ class PostLoader implements DocumentLoaderInterface {
 
     public function find($slug)
     {
-        $file = $this->settings['document_path'] . '/' . $slug . $this->settings['document_ext'];
+        $file = $this->settings->get('document_path') . '/' . $slug . $this->settings->get('document_ext');
         $source = file_get_contents($file);
         $content = explode("\n\n", $source, 2);
 
         $post = new Post;
         $post->setMetadata(json_decode($content[0], true));
         $post->setContent($content[1]);
-        $post->setSlug(basename($file, $this->settings['document_ext']));
+        $post->setSlug(basename($file, $this->settings->get('document_ext')));
 
         return $post;
     }
